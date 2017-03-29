@@ -1,4 +1,5 @@
-FROM jshimko/meteor-launchpad:latest
+FROM    quay.io/chriswessels/meteor-tupperware
+
 MAINTAINER tswayne <swaynetyler@gmail.com>
 
 EXPOSE 4094
