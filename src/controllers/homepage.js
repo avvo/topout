@@ -1,7 +1,10 @@
 const ReactHelper = require('react-helper');
 
 module.exports.index = (req, res) => {
-  const App = ReactHelper.renderComponent('App', {})
-  console.log(App)
+  let user = {}
+  if (req.session.passport && req.session.passport.user) {
+    user = req.session.passport.user;
+  }
+  const App = ReactHelper.renderComponent('App', {user})
   res.render('app', {app: App})
 }
