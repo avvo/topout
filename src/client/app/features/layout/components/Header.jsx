@@ -1,23 +1,47 @@
 import React, { Component, PropTypes } from 'react';
 import { Icon } from '../../common/components/Icon'
 
-class Header extends Component {
-  render() {
+const Header = (props, context) => {
+  console.log(context.data)
     return (
       <header className="header" role="banner">
         <div className="container">
+
           <div className="header-group">
-            <h1>Topout</h1>
+            <a href="/" className="header-brand">
+              Topout
+            </a>
           </div>
-          <div className="header-group header-group-last">
-          </div>
+
+          {context.data.user.userName &&
+            <div className="header-group header-group-last">
+              <ul className="header-links">
+                <li>
+                  <a href="#!">
+                    <img src="https://avatars2.githubusercontent.com/u/4225904?v=3" height="25px"/>
+                    &nbsp;
+                    <span className="text-nowrap">
+                      {context.data.user.userName}
+                    </span>
+                  </a>
+
+                </li>
+                <li>
+                  <a href="/auth/logout">
+                    <span className="text-nowrap">
+                      Logout
+                    </span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          }
         </div>
       </header>
     );
-  }
 }
 
-Header.propTypes = {
+Header.contextTypes = {
+  data: React.PropTypes.object,
 };
-
 export {Header}
