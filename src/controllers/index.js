@@ -1,3 +1,4 @@
 module.exports = {
-  homepage: require('./homepage')
+  homepage: require('./homepage'),
+  leaderboard: require('./leaderboard')
 }
