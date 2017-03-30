@@ -9,6 +9,7 @@ const path = require('path');
 const config  = require('config');
 const app = express();
 const bodyParser = require('body-parser');
+
 app.set('views', 'src/views');
 app.engine('handlebars', exphbs({layoutsDir: 'src/views/layouts',defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
@@ -22,10 +23,16 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 var passport = require('passport');
 require('./src/lib/githubPassportImpl').setup(passport);
 app.use(require('cookie-parser')());
-app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
+var session = require('express-session');
+const RedisStore = require('connect-redis')(session);
+app.use(session({
+  store: new RedisStore({host: config.redis.host}),
+  secret: config.session.secret,
+  resave: true,
+  saveUninitialized: true
+}));
 app.use(passport.initialize());
 app.use(passport.session());
-
 app.use(router);
 
 
