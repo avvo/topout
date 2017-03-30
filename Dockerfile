@@ -12,7 +12,10 @@ WORKDIR $APP_HOME
 ADD package.json $APP_HOME
 
 RUN npm install
-
+ADD src/client src/client
+ADD webpack.config.js .
+RUN ls
+RUN NODE_ENV=production npm run build
 ADD . $APP_HOME
 
 ENV NODE_ENV          production

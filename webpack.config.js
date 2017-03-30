@@ -7,10 +7,7 @@ module.exports = {
   cache:    true,
   devtool: isProdEnvironment ? 'source-map' : 'cheap-module-eval-source-map',
   context: __dirname,
-  entry: [
-    'babel-polyfill',
-    './src/client/registry.js',
-  ],
+  entry: './src/client/registry.js',
   output: {
     filename: 'bundle.js',
     path: path.join(__dirname, './public/javascript'),
