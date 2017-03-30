@@ -18,7 +18,7 @@ const Header = (props, context) => {
               <ul className="header-links">
                 <li>
                   <a href="#!">
-                    <img src="https://avatars2.githubusercontent.com/u/4225904?v=3" height="25px"/>
+                    <img src={context.data.user.img} height="25px"/>
                     &nbsp;
                     <span className="text-nowrap">
                       {context.data.user.userName}
