@@ -17,7 +17,11 @@ module.exports.setup = (passport) => {
       callbackURL: config.github.callback
     },
     function(accessToken, refreshToken, profile, cb) {
-      return cb(null, {id: profile.id, userName: profile.username});
+      return cb(null, {
+        id: profile.id,
+        userName: profile.username,
+        img: profile.photos[0]
+      });
     }
   ));
 }

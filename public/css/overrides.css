@@ -4,3 +4,14 @@
     border-bottom-color: rgba(0,0,0,.1);
 
 }
+.header  .header-btn {
+    margin: 0 8px;
+}
+
+.header  .header-links > li > a {
+    color: white !important;
+}
+
+.header  .header-brand {
+    color: white;
+}
