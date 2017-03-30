@@ -1,19 +1,17 @@
 import React from 'react'
-import {Header} from '../features/layout/components/Header';
-import {Footer} from '../features/layout/components/Footer';
+import {Layout} from '../features/layout/Layout';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {Home} from '../features/home/Home';
+import {DataWrapper} from '../features/common/components/DataWrapper';
 
 export default (props) => {
-  console.log(props)
   return (
-    <div className="off-canvas-wrapper sticky-footer-container">
-      <Header />
-      <div className="sticky-footer-expander">
-        <div className="container u-vertical-padding-1">
-          <h1>Topout</h1>
-          <h3>{props.user && props.user.userName || <a href="/auth/github">login with github</a>}</h3>
-        </div>
-      </div>
-      <Footer />
-    </div>
+    <DataWrapper data={props}>
+      <Router>
+        <Layout>
+          <Route path='/' component={Home} />
+        </Layout>
+      </Router>
+    </DataWrapper>
   )
 }
