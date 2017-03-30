@@ -7,7 +7,7 @@ class Header extends Component {
       <header className="header" role="banner">
         <div className="container">
           <div className="header-group">
-            <Icon name="avvo" />
+            <h1>Topout</h1>
           </div>
           <div className="header-group header-group-last">
           </div>

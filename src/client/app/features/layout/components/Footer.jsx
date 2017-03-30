@@ -7,7 +7,7 @@ class Footer extends Component {
         <hr className="u-margin-bottom-0" />
         <div className="footer u-bg-lighter-gray">
           <div className="container text-center">
-            <small>© Product by Avvo Inc. All Rights Reserved 2017</small>
+            <small>© Product by <a href="www.avvo.com">Avvo Inc.</a> All Rights Reserved 2017</small>
           </div>
         </div>
       </footer>
