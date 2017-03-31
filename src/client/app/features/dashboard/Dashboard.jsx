@@ -14,6 +14,8 @@ class Dashboard extends React.Component{
   componentDidMount() {
     const socket = io(this.context.data.socketUrl);
     socket.on('db', (payload) => {
+      const matchedScore = payload.leaderboard.find(score => {return score.id == this.context.data.user.id})
+      this.setState({scoresOverTime: [].concat(this.state.scoresOverTime, matchedScore)})
     });
   }
 
