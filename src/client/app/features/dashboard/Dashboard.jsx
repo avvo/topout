@@ -10,7 +10,6 @@ class Dashboard extends React.Component{
   componentDidMount() {
     const socket = io(this.context.data.socketUrl);
     socket.on('db', (payload) => {
-      console.log(payload)
     });
   }
 

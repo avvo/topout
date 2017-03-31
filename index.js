@@ -18,6 +18,7 @@ app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 }));
+app.use(require('./src/lib/express-react-helper')());
 
 
 var passport = require('passport');
@@ -33,8 +34,8 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(require('./src/lib/reactContext')());
 app.use(router);
-
 require('./config/db').initConnectection((err, db) => {
   if (err) {
     console.log(err);

@@ -1,18 +1,16 @@
 import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router-dom'
 import { Icon } from '../../common/components/Icon'
 
 const Header = (props, context) => {
-  console.log(context.data)
     return (
       <header className="header" role="banner">
         <div className="container">
 
           <div className="header-group">
             {context.data.user.userName &&
-              <a href="/dashboard" className="header-brand">
-                Topout
-              </a> ||
-              <a href="/" className="header-brand">
+            <Link to="/dashboard" className="header-brand">Topout</Link>
+              || <a href="/" className="header-brand">
                 Topout
               </a>
             }
