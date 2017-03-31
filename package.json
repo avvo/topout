@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/avvo/topout#readme",
   "dependencies": {
+    "axios": "^0.15.3",
     "body-parser": "^1.17.1",
     "config": "^1.25.1",
     "connect-redis": "^3.2.0",

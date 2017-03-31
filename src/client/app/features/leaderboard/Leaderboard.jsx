@@ -1,10 +1,12 @@
 import React from 'react'
 import io  from 'socket.io-client';
+import axios from 'axios';
 
 class Leaderboard extends React.Component{
   constructor(props, context) {
     super(props, context)
-    this.state = {leaderboard: this.context.data.leaderboard}
+
+    this.state = {leaderboard: this.context.data.leaderboard || []}
   }
 
   componentDidMount() {
@@ -12,6 +14,12 @@ class Leaderboard extends React.Component{
     socket.on('db', (payload) => {
       this.setState({leaderboard: payload.leaderboard})
     });
+    if (!this.context.data.leaderboard) {
+      axios.get(`${this.context.data.socketUrl}/leaderboard/api`)
+        .then(response => {
+          this.setState({leaderboard: response.data.leaderboard})
+        })
+    }
   }
 
   render() {
