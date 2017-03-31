@@ -5,6 +5,7 @@ const isAuthenticated = require('../src/lib/auth').isAuthenticated;
 const router = express.Router();
 
 router.get('/', controllers.homepage.index);
+router.get('/dashboard', isAuthenticated, controllers.dashboard.index);
 router.get('/leaderboard', isAuthenticated, controllers.leaderboard.index);
 router.get('/auth/logout', controllers.auth.logout);
 router.get('/auth/github', passport.authenticate('github'));
