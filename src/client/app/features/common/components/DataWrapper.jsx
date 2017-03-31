@@ -3,7 +3,6 @@ import React from 'react'
 class DataWrapper extends React.Component {
 
   getChildContext() {
-    console.log(this.props.data)
     return {
       data: this.props.data
     }

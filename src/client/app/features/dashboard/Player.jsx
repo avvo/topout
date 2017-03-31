@@ -4,7 +4,7 @@ import {ZingChart} from '../common/components/ZingChart'
 import {config} from './lib/dashboard-chart-config'
 import axios from 'axios'
 
-class Dashboard extends React.Component{
+class Player extends React.Component{
   constructor(props, context) {
     super(props, context)
     const checked = this.context.data.scores || false;
@@ -13,7 +13,7 @@ class Dashboard extends React.Component{
 
   componentDidMount() {
     if (!this.context.data.scores && !this.state.checked ) {
-      axios.get(`/dashboard/api`)
+      axios.get(`/dashboard/api/${this.props.match.params.userId}`)
         .then(response => {
           return this.setState({scoresOverTime: response.data.scores, checked: true})
         })
@@ -23,14 +23,6 @@ class Dashboard extends React.Component{
   render() {
     return(
       <div>
-        <div className="row">
-          <div className="col-xs-6">
-            <h1 className="u-margin-bottom-0 u-margin-top-0">Welcome {this.context.data.user.userName}</h1>
-          </div>
-          <div className="col-xs-6 text-right">
-            <Link to="/leaderboard">View Leaderboard</Link>
-          </div>
-        </div>
         <div className="row">
           <div className="col-xs-12">
             {this.state.checked &&
@@ -52,8 +44,8 @@ class Dashboard extends React.Component{
 }
 
 
-Dashboard.contextTypes = {
+Player.contextTypes = {
   data: React.PropTypes.object,
 }
 
-export {Dashboard}
+export {Player}
