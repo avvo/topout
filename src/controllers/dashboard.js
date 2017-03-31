@@ -6,3 +6,10 @@ module.exports.index = (req, res) => {
     res.render('app', {app: App})
   })
 }
+
+module.exports.api = (req, res) => {
+  const db = require('../../config/db').db;
+  db.collection('scores').find({user: req.user.id}).limit( 150 ).sort({timestamp: -1}).toArray((err, scores) => {
+    res.json({scores: scores.reverse()})
+  })
+}

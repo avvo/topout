@@ -33,7 +33,7 @@ const config = (data, title, color) => {
       }
     },
     scaleY: {
-      values:"0:100:20",
+      values:"0:2000:20",
       label: {
         text: 'Score'
       }

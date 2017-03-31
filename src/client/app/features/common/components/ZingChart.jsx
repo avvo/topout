@@ -31,8 +31,13 @@ const mergeGlobalConfig = (config) => Object.assign({}, globalConfig, config)
 
 class ZingChart extends React.Component {
 
+  constructor(props) {
+    super(props)
+    this.state = {config: this.props.config}
+  }
+
   componentDidMount() {
-    this.initGraph(this.props.config)
+    this.initGraph(this.state.config)
   }
 
   initGraph(config) {

@@ -11,7 +11,9 @@ module.exports.schedule = (db, socket) => {
         const scores = leaderboard.map(record => {
           return {id: new ObjectId(), timestamp: Date.now(), score: record.score, user: record.id}
         })
-        db.collection('scores').insertMany(scores, function(err, res) {})
+        if (scores.length > []) {
+          db.collection('scores').insertMany(scores, function(err, res) {})
+        }
       };
     });
   });

@@ -1,27 +1,27 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import io  from 'socket.io-client';
 import {ZingChart} from '../common/components/ZingChart'
 import {config} from './lib/dashboard-chart-config'
-
+import axios from 'axios'
 
 class Dashboard extends React.Component{
   constructor(props, context) {
     super(props, context)
-    this.state = {scoresOverTime: this.context.data.scores || []}
+    const checked = this.context.data.scores || false;
+    this.state = {checked: checked, scoresOverTime: this.context.data.scores || []}
   }
 
   componentDidMount() {
-    const socket = io(this.context.data.socketUrl);
-    socket.on('db', (payload) => {
-      const matchedScore = payload.leaderboard.find(score => {return score.id == this.context.data.user.id})
-      if (matchedScore) {
-        this.setState({scoresOverTime: [].concat(this.state.scoresOverTime, matchedScore).slice(1)})
-      }
-    });
+    if (!this.context.data.scores && !this.state.checked ) {
+      axios.get(`/dashboard/api`)
+        .then(response => {
+          return this.setState({scoresOverTime: response.data.scores, checked: true})
+        })
+    }
   }
 
   render() {
+    console.log(this.state.scoresOverTime)
     return(
       <div>
         <div className="row">
@@ -34,6 +34,7 @@ class Dashboard extends React.Component{
         </div>
         <div className="row">
           <div className="col-xs-12">
+            {this.state.checked &&
             <ZingChart
               config={config(
                 this.state.scoresOverTime,
@@ -42,6 +43,7 @@ class Dashboard extends React.Component{
               )}
               graphId="dashboard"
             />
+            }
           </div>
         </div>
       </div>
