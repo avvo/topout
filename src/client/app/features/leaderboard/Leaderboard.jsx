@@ -15,7 +15,7 @@ class Leaderboard extends React.Component{
       this.setState({leaderboard: payload.leaderboard})
     });
     if (!this.context.data.leaderboard) {
-      axios.get(`${this.context.data.socketUrl}/leaderboard/api`)
+      axios.get(`/leaderboard/api`)
         .then(response => {
           this.setState({leaderboard: response.data.leaderboard})
         })
