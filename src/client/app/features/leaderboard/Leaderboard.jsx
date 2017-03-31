@@ -20,13 +20,15 @@ class Leaderboard extends React.Component{
         <h1>Leaderboard</h1>
         <table className="table table-responsive-cards">
           <thead>
-          <th>User</th>
-          <th>Score</th>
+            <tr>
+              <th>User</th>
+              <th>Score</th>
+            </tr>
           </thead>
           <tbody>
-          {this.state.leaderboard.map(record => {
-            return (<tr>
-              <td>{record.display_name && record.display_name || '?'}</td>
+          {this.state.leaderboard.map((record, index) => {
+            return (<tr key={index}>
+              <td >{record.display_name && record.display_name || '?'}</td>
               <td>{record.score}</td>
             </tr>)
           })}
