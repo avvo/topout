@@ -1,6 +1,7 @@
 import React from 'react'
 import io  from 'socket.io-client';
 import axios from 'axios';
+import { Link } from 'react-router-dom'
 
 class Leaderboard extends React.Component{
   constructor(props, context) {
@@ -36,7 +37,9 @@ class Leaderboard extends React.Component{
           <tbody>
           {this.state.leaderboard.map((record, index) => {
             return (<tr key={index}>
-              <td >{record.display_name && record.display_name || '?'}</td>
+              <td>{record.display_name ? <Link to={`dashboard/${record.id}`}>
+                  {record.display_name}
+              </Link> : '?'}</td>
               <td>{record.score}</td>
             </tr>)
           })}
