@@ -3,7 +3,7 @@ const request = require('request');
 const ObjectId = require('mongodb').ObjectID;
 
 module.exports.schedule = (db, socket) => {
-  schedule.scheduleJob('*/10 * * * * *', () => {
+  schedule.scheduleJob('* */6 * * *', () => {
     request('http://topout-api.conductor.topout.jakotako.com:8890/api/leaderboard_summary', function (error, response, body) {
       if (!error && response.statusCode == 200) {
         const leaderboard = JSON.parse(body).data;
