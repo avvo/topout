@@ -5,5 +5,5 @@ module.exports.logout = (req, res) => {
 }
 
 module.exports.login = (req, res) => {
-  return res.redirect('/leaderboard')
+  return res.redirect('/dashboard')
 }

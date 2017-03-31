@@ -8,9 +8,14 @@ const Header = (props, context) => {
         <div className="container">
 
           <div className="header-group">
-            <a href="/" className="header-brand">
-              Topout
-            </a>
+            {context.data.user.userName &&
+              <a href="/dashboard" className="header-brand">
+                Topout
+              </a> ||
+              <a href="/" className="header-brand">
+                Topout
+              </a>
+            }
           </div>
 
           {context.data.user.userName &&

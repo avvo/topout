@@ -35,9 +35,18 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(router);
 
+require('./config/db').initConnectection((err, db) => {
+  if (err) {
+    console.log(err);
+    process.exit()
+  }
 
-const port    = config.port;
-const host    = config.host;
-app.listen(port, host, function () {
-  console.log(`avvoflow-service [${process.env.NODE_ENV}] started on port ${port}`);
+  const port    = config.port;
+  const host    = config.host;
+  const server = app.listen(port, host, function (server) {
+    console.log(`avvoflow-service [${process.env.NODE_ENV}] started on port ${port}`);
+  });
+  const socket = require('./config/socket').connect(server);
+  require('./src/lib/dataPullerCron').schedule(db, socket);
+
 });
