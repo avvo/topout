@@ -1,6 +1,7 @@
 module.exports = {
   host: process.env.HOST || '0.0.0.0',
   port: process.env.PORT || 4096,
+  fullUrl: process.env.fullUrl || 'http://localhost:4096',
   github: {
     clientId: process.env.GITHUB_CLIENT_ID,
     secret: process.env.GITHUB_SECRET,
@@ -16,5 +17,5 @@ module.exports = {
   },
   session: {
     secret: process.env.SESSION_SECRET || 'keyboard cat'
-  }
+  },
 };

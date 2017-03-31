@@ -8,7 +8,7 @@ class Leaderboard extends React.Component{
   }
 
   componentDidMount() {
-    var socket = io('http://localhost:4096');
+    const socket = io(this.context.data.socketUrl);
     socket.on('db', (payload) => {
       this.setState({leaderboard: payload.leaderboard})
     });
