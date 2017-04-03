@@ -18,4 +18,7 @@ module.exports = {
   session: {
     secret: process.env.SESSION_SECRET || 'keyboard cat'
   },
+  topoutApi: {
+    baseUrl: process.env.TOPOUT_API_BASE_URL
+  }
 };
